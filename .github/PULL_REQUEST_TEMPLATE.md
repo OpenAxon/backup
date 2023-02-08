@@ -9,4 +9,4 @@
 ### Checklist
 <!-- [Place an '[x]' (no spaces) in all applicable fields. Please remove unrelated fields.] -->
 - [ ] README.md was updated
-- [ ] Git commmits were signed
+- [ ] Git commits were signed
