@@ -1,0 +1,37 @@
+---
+name: "Build"
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: ["7", "bionic", "focal"]
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: "Build for ${{ matrix.os }}"
+        run: |
+          export OS_VERSION=${{ matrix.os }}
+          make package
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v3
+        with:
+          name: pkg
+          path: omnibus/pkg/*
+  list-packages:
+    needs: build
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Download packages from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: pkg
+      - name: List packages
+        shell: bash
+        run: |
+          ls
