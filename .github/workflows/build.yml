@@ -18,8 +18,8 @@ jobs:
         run: |
           export OS_VERSION=${{ matrix.os }}
           make package
-      - name: Upload package for passing to release job
-        uses: actions/upload-artifact@v3
+      - name: "Upload package for passing to release job"
+        uses: "actions/upload-artifact@v3"
         with:
           name: "pkg"
           path: "omnibus/pkg/*"
